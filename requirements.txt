@@ -1,1 +1,37 @@
-# Python dependencies for personal assistant project
+# Core framework & orchestration
+fastapi
+uvicorn[standard]
+langgraph
+
+# LLM integrations
+openai
+anthropic
+
+# Local LLM via Ollama (HTTP client)
+httpx
+
+# Vector DB and embeddings
+lancedb
+nomic
+
+# File watching and Git integration
+watchdog
+gitpython
+
+# Google Calendar integration
+google-api-python-client
+google-auth
+google-auth-oauthlib
+google-auth-httplib2
+
+# Background jobs (optional)
+redis
+rq
+
+# Utilities
+pydantic
+pydantic-settings
+loguru
+
+# Development tools
+ipython

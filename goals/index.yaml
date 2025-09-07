@@ -1,1 +1,12 @@
-# Machine-readable index of goals/milestones
+# Machine-readable index of goals and milestones
+# This is optional if you prefer to parse frontmatter from goals.md.
+schema_version: 1
+goals:
+  - id: piano-practice
+    priority: medium
+    due: 2025-10-15
+    tags: [health, hobby]
+  - id: project-setup
+    priority: high
+    due: 2025-09-21
+    tags: [dev, infra]

@@ -1,1 +1,42 @@
-# Docker Compose configuration for personal assistant project
+version: "3.9"
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: assistant-app:dev
+    command: uvicorn app.main:app --host 0.0.0.0 --port 8000 --reload
+    env_file:
+      - .env
+    environment:
+      LANCE_HOME: /workspace/.assistant/lance
+      TZ: Asia/Taipei
+    volumes:
+      - ./project:/workspace/project
+      - ./.assistant:/workspace/.assistant
+      - ./goals:/workspace/goals
+    ports:
+      - "8000:8000"
+    depends_on:
+      ollama:
+        condition: service_started
+      redis:
+        condition: service_started
+
+  ollama:
+    image: ollama/ollama:latest
+    restart: unless-stopped
+    ports:
+      - "11434:11434"
+    volumes:
+      - ./.assistant/ollama:/root/.ollama
+    environment:
+      TZ: Asia/Taipei
+
+  redis:
+    image: redis:7-alpine
+    restart: unless-stopped
+    ports:
+      - "6379:6379"
+    volumes:
+      - ./.assistant/redis:/data
